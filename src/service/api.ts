@@ -112,13 +112,13 @@ export interface CreateNewAlertContractRequestDTO {
      * @type {string}
      * @memberof CreateNewAlertContractRequestDTO
      */
-    targetType: CreateNewAlertContractRequestDTO.TargetTypeEnum;
+    targetType: TargetTypeEnum;
     /**
      *
      * @type {string}
      * @memberof CreateNewAlertContractRequestDTO
      */
-    trend: CreateNewAlertContractRequestDTO.TrendEnum;
+    trend: TrendEnum;
     /**
      *
      * @type {AlertThrottleEnum}
@@ -131,23 +131,21 @@ export interface CreateNewAlertContractRequestDTO {
  * @export
  * @namespace CreateNewAlertContractRequestDTO
  */
-export namespace CreateNewAlertContractRequestDTO {
-    /**
-     * @export
-     * @enum {string}
-     */
-    export enum TargetTypeEnum {
-        Exact = <any>'exact',
-        Percentage = <any>'percentage'
-    }
-    /**
-     * @export
-     * @enum {string}
-     */
-    export enum TrendEnum {
-        Lower = <any>'lower',
-        Higher = <any>'higher'
-    }
+/**
+ * @export
+ * @enum {string}
+ */
+export enum TargetTypeEnum {
+    Exact = <any>'exact',
+    Percentage = <any>'percentage'
+}
+/**
+ * @export
+ * @enum {string}
+ */
+export enum TrendEnum {
+    Lower = <any>'lower',
+    Higher = <any>'higher'
 }
 /**
  *
@@ -178,13 +176,13 @@ export interface CreateNewAlertContractResponseDTO {
      * @type {string}
      * @memberof CreateNewAlertContractResponseDTO
      */
-    targetType: CreateNewAlertContractResponseDTO.TargetTypeEnum;
+    targetType: TargetTypeEnum;
     /**
      *
      * @type {string}
      * @memberof CreateNewAlertContractResponseDTO
      */
-    trend: CreateNewAlertContractResponseDTO.TrendEnum;
+    trend: TrendEnum;
     /**
      *
      * @type {AlertThrottleEnum}
@@ -193,28 +191,6 @@ export interface CreateNewAlertContractResponseDTO {
     throttling: AlertThrottleEnum;
 }
 
-/**
- * @export
- * @namespace CreateNewAlertContractResponseDTO
- */
-export namespace CreateNewAlertContractResponseDTO {
-    /**
-     * @export
-     * @enum {string}
-     */
-    export enum TargetTypeEnum {
-        Exact = <any>'exact',
-        Percentage = <any>'percentage'
-    }
-    /**
-     * @export
-     * @enum {string}
-     */
-    export enum TrendEnum {
-        Lower = <any>'lower',
-        Higher = <any>'higher'
-    }
-}
 /**
  *
  * @export
@@ -435,12 +411,6 @@ export interface UserAlertContracts {
      */
     id: string;
     /**
-     * user that defined the contract
-     * @type {string}
-     * @memberof UserAlertContracts
-     */
-    userId: string;
-    /**
      *
      * @type {string}
      * @memberof UserAlertContracts
@@ -457,13 +427,13 @@ export interface UserAlertContracts {
      * @type {string}
      * @memberof UserAlertContracts
      */
-    targetType: UserAlertContracts.TargetTypeEnum;
+    targetType: TargetTypeEnum;
     /**
      *
      * @type {string}
      * @memberof UserAlertContracts
      */
-    trend: UserAlertContracts.TrendEnum;
+    trend: TrendEnum;
     /**
      *
      * @type {AlertThrottleEnum}
@@ -490,28 +460,6 @@ export interface UserAlertContracts {
     lastDetectionPrice?: number;
 }
 
-/**
- * @export
- * @namespace UserAlertContracts
- */
-export namespace UserAlertContracts {
-    /**
-     * @export
-     * @enum {string}
-     */
-    export enum TargetTypeEnum {
-        Exact = <any>'exact',
-        Percentage = <any>'percentage'
-    }
-    /**
-     * @export
-     * @enum {string}
-     */
-    export enum TrendEnum {
-        Lower = <any>'lower',
-        Higher = <any>'higher'
-    }
-}
 /**
  * DefaultApi - fetch parameter creator
  * @export

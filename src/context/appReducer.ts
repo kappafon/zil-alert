@@ -1,4 +1,5 @@
-import { ActionTypeEnum, UserAlertContracts, ContractActions, ReducerState } from '../model/models';
+import { ActionTypeEnum, ContractActions, ReducerState } from '../model/models';
+import { UserAlertContracts } from '../service';
 
 export default function appReducer(state: ReducerState, action: ContractActions) {
     switch (action.type) {
@@ -31,7 +32,14 @@ export default function appReducer(state: ReducerState, action: ContractActions)
                 )
             };
 
+        case ActionTypeEnum.SET_INITIAL_USER_CONTRACTS:
+            return {
+                ...state,
+                contracts: action.payload
+            };
+
         default:
-            return state;
+            const exhaustiveCheck: never = action;
+            return exhaustiveCheck;
     }
 }

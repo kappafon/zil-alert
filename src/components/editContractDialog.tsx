@@ -13,7 +13,7 @@ import { useTheme } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 import ContractForm from './contractForm';
 import { GlobalContext } from '../context/globalState';
-import { UserAlertContracts, CreateNewAlertContractRequestDTO } from '../model/models';
+import { CreateNewAlertContractRequestDTO, UserAlertContracts } from '../service';
 
 interface Props {
     id: string;
@@ -37,7 +37,6 @@ const EditContractDialog: React.FC<Props> = ({ id }) => {
         setOpen(false);
         const newContract: UserAlertContracts = {
             id: id,
-            userId: 'test',
             tokenId: data.tokenId,
             priceTarget: +data.priceTarget,
             targetType: data.targetType,
@@ -56,7 +55,6 @@ const EditContractDialog: React.FC<Props> = ({ id }) => {
             if (contract) {
                 return {
                     id: id,
-                    userId: 'test',
                     tokenId: contract.tokenId,
                     priceTarget: contract.priceTarget,
                     targetType: contract.targetType,

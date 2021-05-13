@@ -46,7 +46,7 @@ const AddContractDialog: React.FC = () => {
         setOpen(false);
         const newContract: UserAlertContracts = {
             id: String(contracts.length + 1),
-            userId: 'test',
+            userId: 'dino',
             tokenId: data.tokenId,
             priceTarget: +data.priceTarget,
             targetType: data.targetType,

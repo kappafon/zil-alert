@@ -1,4 +1,4 @@
-import { AlertThrottleEnum } from '../model/models';
+import { AlertThrottleEnum } from '../service';
 
 // APP TEXT
 export const APP_TITLE = 'Zil Alert';
@@ -105,15 +105,15 @@ export const tokenDropdownOptions = [
 
 export const throttlingDropdownOptions = [
     {
-        id: AlertThrottleEnum.once,
+        id: AlertThrottleEnum.Once,
         name: 'One Time'
     },
     {
-        id: AlertThrottleEnum.oncePerHour,
+        id: AlertThrottleEnum.OncePerHour,
         name: 'Once per Hour'
     },
     {
-        id: AlertThrottleEnum.reccuring,
+        id: AlertThrottleEnum.Recurring,
         name: 'Repeatedly'
     }
 ];

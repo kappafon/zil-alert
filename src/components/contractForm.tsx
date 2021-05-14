@@ -20,7 +20,7 @@ import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import TrendingDownIcon from '@material-ui/icons/TrendingDown';
 import { useForm, Controller } from 'react-hook-form';
 import { throttlingDropdownOptions, tokenDropdownOptions } from '../utils/constants';
-import { CreateNewAlertContractRequestDTO } from '../model/models';
+import { CreateNewAlertContractRequestDTO, TargetTypeEnum } from '../service';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -61,7 +61,10 @@ const AddContractForm: React.FC<Props> = ({ defaultData, onAddContractClick }) =
 
     const onSubmit = (data: Omit<CreateNewAlertContractRequestDTO, 'targetType'>) => {
         console.log(data);
-        onAddContractClick({ ...data, targetType: 'exact' });
+        onAddContractClick({
+            ...data,
+            targetType: TargetTypeEnum.Exact
+        });
     };
 
     return (

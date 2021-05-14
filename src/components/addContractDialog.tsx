@@ -14,7 +14,8 @@ import {
 import AddIcon from '@material-ui/icons/Add';
 import ContractForm from './contractForm';
 import { GlobalContext } from '../context/globalState';
-import { UserAlertContracts, CreateNewAlertContractRequestDTO } from '../model/models';
+import { CreateNewAlertContractRequestDTO } from '../service';
+import useAddContract from './hooks/useAddContract';
 
 const useStyles = makeStyles({
     fabButton: {
@@ -31,8 +32,9 @@ const AddContractDialog: React.FC = () => {
     const theme = useTheme();
     const classes = useStyles();
     const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
-    const { addContract, contracts } = useContext(GlobalContext);
+    const { addContract } = useContext(GlobalContext);
     const [open, setOpen] = React.useState(false);
+    const { createNewAlertContractApi, value, loading, error } = useAddContract();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -42,11 +44,9 @@ const AddContractDialog: React.FC = () => {
         setOpen(false);
     };
 
-    const handleConfirm = (data: CreateNewAlertContractRequestDTO) => {
+    const handleConfirm = async (data: CreateNewAlertContractRequestDTO) => {
         setOpen(false);
-        const newContract: UserAlertContracts = {
-            id: String(contracts.length + 1),
-            userId: 'test',
+        const newContract: CreateNewAlertContractRequestDTO = {
             tokenId: data.tokenId,
             priceTarget: +data.priceTarget,
             targetType: data.targetType,
@@ -54,10 +54,14 @@ const AddContractDialog: React.FC = () => {
             throttling: data.throttling
         };
 
+        const newContractResult = await createNewAlertContractApi(newContract);
+
         if (addContract) {
-            addContract(newContract);
+            addContract(newContractResult);
         }
     };
+
+    console.log({ value, loading, error });
 
     return (
         <div>

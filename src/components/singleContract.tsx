@@ -2,7 +2,7 @@ import { Paper, Box, IconButton, makeStyles } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import React, { useContext } from 'react';
 import { GlobalContext } from '../context/globalState';
-import { UserAlertContracts } from '../model/models';
+import { UserAlertContracts } from '../service';
 import EditContractDialog from './editContractDialog';
 
 const useStyles = makeStyles((theme) => ({

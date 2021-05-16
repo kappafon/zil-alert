@@ -26,6 +26,12 @@ const SingleContract: React.FC<Props> = ({ contract }) => {
     const onRemoveClick = () => {
         removeContract!(contract.id);
     };
+
+    let lastDetectedStringDate = 'N/A';
+    if (contract.lastDetected) {
+        lastDetectedStringDate = new Date(contract.lastDetected).toDateString();
+    }
+
     return (
         <Paper key={contract.id} className={classes.paper} elevation={3}>
             <div>{contract.tokenId}</div>
@@ -34,8 +40,7 @@ const SingleContract: React.FC<Props> = ({ contract }) => {
             </div>
             {contract.lastDetectionPrice && (
                 <div>
-                    {contract.lastDetectionPrice} detected on{' '}
-                    {contract.lastDetected?.toDateString() ?? 'N/A'}
+                    {contract.lastDetectionPrice} detected on {lastDetectedStringDate}
                 </div>
             )}
             <Box className={classes.box}>

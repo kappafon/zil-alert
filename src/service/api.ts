@@ -397,6 +397,50 @@ export interface UnlincesedError {
 /**
  *
  * @export
+ * @interface UpdateAlertContractRequestDTO
+ */
+export interface UpdateAlertContractRequestDTO {
+    /**
+     *
+     * @type {string}
+     * @memberof UpdateAlertContractRequestDTO
+     */
+    id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof UpdateAlertContractRequestDTO
+     */
+    tokenId: string;
+    /**
+     *
+     * @type {number}
+     * @memberof UpdateAlertContractRequestDTO
+     */
+    priceTarget: number;
+    /**
+     *
+     * @type {string}
+     * @memberof UpdateAlertContractRequestDTO
+     */
+    targetType: TargetTypeEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof UpdateAlertContractRequestDTO
+     */
+    trend: TrendEnum;
+    /**
+     *
+     * @type {AlertThrottleEnum}
+     * @memberof UpdateAlertContractRequestDTO
+     */
+    throttling: AlertThrottleEnum;
+}
+
+/**
+ *
+ * @export
  * @interface UserAlertContracts
  */
 export interface UserAlertContracts {
@@ -508,6 +552,50 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
             localVarRequestOptions.body = needsSerialization
                 ? JSON.stringify(body || {})
                 : body || '';
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions
+            };
+        },
+        /**
+         * Deletes existing alert contract
+         * @param {string} contractId
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAlertContract(contractId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'contractId' is not null or undefined
+            if (contractId === null || contractId === undefined) {
+                throw new RequiredError(
+                    'contractId',
+                    'Required parameter contractId was null or undefined when calling deleteAlertContract.'
+                );
+            }
+            const localVarPath = `/api/contracts/{contractId}`.replace(
+                `{${'contractId'}}`,
+                encodeURIComponent(String(contractId))
+            );
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+
+            localVarUrlObj.query = Object.assign(
+                {},
+                localVarUrlObj.query,
+                localVarQueryParameter,
+                options.query
+            );
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete (localVarUrlObj as any).search;
+            localVarRequestOptions.headers = Object.assign(
+                {},
+                localVarHeaderParameter,
+                options.headers
+            );
 
             return {
                 url: url.format(localVarUrlObj),
@@ -642,6 +730,55 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions
             };
+        },
+        /**
+         * Updates existing alert contract
+         * @param {UpdateAlertContractRequestDTO} body
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAlertContract(body: UpdateAlertContractRequestDTO, options: any = {}): FetchArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError(
+                    'body',
+                    'Required parameter body was null or undefined when calling updateAlertContract.'
+                );
+            }
+            const localVarPath = `/api/contracts/update-contract`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign(
+                {},
+                localVarUrlObj.query,
+                localVarQueryParameter,
+                options.query
+            );
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete (localVarUrlObj as any).search;
+            localVarRequestOptions.headers = Object.assign(
+                {},
+                localVarHeaderParameter,
+                options.headers
+            );
+            const needsSerialization =
+                <any>'UpdateAlertContractRequestDTO' !== 'string' ||
+                localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization
+                ? JSON.stringify(body || {})
+                : body || '';
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions
+            };
         }
     };
 };
@@ -670,6 +807,31 @@ export const DefaultApiFp = function (configuration?: Configuration) {
                     (response) => {
                         if (response.status >= 200 && response.status < 300) {
                             return response.json();
+                        } else {
+                            throw response;
+                        }
+                    }
+                );
+            };
+        },
+        /**
+         * Deletes existing alert contract
+         * @param {string} contractId
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAlertContract(
+            contractId: string,
+            options?: any
+        ): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(
+                configuration
+            ).deleteAlertContract(contractId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(
+                    (response) => {
+                        if (response.status >= 200 && response.status < 300) {
+                            return response;
                         } else {
                             throw response;
                         }
@@ -751,6 +913,31 @@ export const DefaultApiFp = function (configuration?: Configuration) {
                     }
                 );
             };
+        },
+        /**
+         * Updates existing alert contract
+         * @param {UpdateAlertContractRequestDTO} body
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAlertContract(
+            body: UpdateAlertContractRequestDTO,
+            options?: any
+        ): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(
+                configuration
+            ).updateAlertContract(body, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(
+                    (response) => {
+                        if (response.status >= 200 && response.status < 300) {
+                            return response;
+                        } else {
+                            throw response;
+                        }
+                    }
+                );
+            };
         }
     };
 };
@@ -773,6 +960,18 @@ export const DefaultApiFactory = function (
          */
         createNewAlertContract(body: CreateNewAlertContractRequestDTO, options?: any) {
             return DefaultApiFp(configuration).createNewAlertContract(body, options)(
+                fetch,
+                basePath
+            );
+        },
+        /**
+         * Deletes existing alert contract
+         * @param {string} contractId
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAlertContract(contractId: string, options?: any) {
+            return DefaultApiFp(configuration).deleteAlertContract(contractId, options)(
                 fetch,
                 basePath
             );
@@ -802,6 +1001,15 @@ export const DefaultApiFactory = function (
          */
         registerNewUser(body: RegisterUserRequestDTO, options?: any) {
             return DefaultApiFp(configuration).registerNewUser(body, options)(fetch, basePath);
+        },
+        /**
+         * Updates existing alert contract
+         * @param {UpdateAlertContractRequestDTO} body
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAlertContract(body: UpdateAlertContractRequestDTO, options?: any) {
+            return DefaultApiFp(configuration).updateAlertContract(body, options)(fetch, basePath);
         }
     };
 };
@@ -822,6 +1030,20 @@ export class DefaultApi extends BaseAPI {
      */
     public createNewAlertContract(body: CreateNewAlertContractRequestDTO, options?: any) {
         return DefaultApiFp(this.configuration).createNewAlertContract(body, options)(
+            this.fetch,
+            this.basePath
+        );
+    }
+
+    /**
+     * Deletes existing alert contract
+     * @param {string} contractId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public deleteAlertContract(contractId: string, options?: any) {
+        return DefaultApiFp(this.configuration).deleteAlertContract(contractId, options)(
             this.fetch,
             this.basePath
         );
@@ -860,6 +1082,20 @@ export class DefaultApi extends BaseAPI {
      */
     public registerNewUser(body: RegisterUserRequestDTO, options?: any) {
         return DefaultApiFp(this.configuration).registerNewUser(body, options)(
+            this.fetch,
+            this.basePath
+        );
+    }
+
+    /**
+     * Updates existing alert contract
+     * @param {UpdateAlertContractRequestDTO} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public updateAlertContract(body: UpdateAlertContractRequestDTO, options?: any) {
+        return DefaultApiFp(this.configuration).updateAlertContract(body, options)(
             this.fetch,
             this.basePath
         );

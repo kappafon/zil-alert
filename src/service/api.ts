@@ -129,10 +129,6 @@ export interface CreateNewAlertContractRequestDTO {
 
 /**
  * @export
- * @namespace CreateNewAlertContractRequestDTO
- */
-/**
- * @export
  * @enum {string}
  */
 export enum TargetTypeEnum {
@@ -483,7 +479,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                     'Required parameter body was null or undefined when calling createNewAlertContract.'
                 );
             }
-            const localVarPath = `/contracts`;
+            const localVarPath = `/api/contracts`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
@@ -524,7 +520,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @throws {RequiredError}
          */
         getUserContracts(options: any = {}): FetchArgs {
-            const localVarPath = `/contracts`;
+            const localVarPath = `/api/contracts`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -565,7 +561,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                     'Required parameter body was null or undefined when calling loginUser.'
                 );
             }
-            const localVarPath = `/users/login`;
+            const localVarPath = `/api/users/login`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
@@ -612,7 +608,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                     'Required parameter body was null or undefined when calling registerNewUser.'
                 );
             }
-            const localVarPath = `/users/register`;
+            const localVarPath = `/api/users/register`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
